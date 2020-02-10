@@ -125,7 +125,7 @@ class ToolTipWidget extends StatelessWidget {
           showArrow ? _getArrow(contentOffsetMultiplier) : Container(),
           Positioned(
             top: contentY,
-            left:  MediaQuery.of(context).size.width * 1/16,
+            left:  MediaQuery.of(context).size.width * 1/32,
             child: FractionalTranslation(
               translation: Offset(0.0, contentFractionalOffset),
               child: SlideTransition(
@@ -136,7 +136,7 @@ class ToolTipWidget extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 7/8,
+                    width: MediaQuery.of(context).size.width * 15/16,
                     padding:
                     EdgeInsets.only(top: paddingTop, bottom: paddingBottom),
                     child: ClipRRect(
@@ -162,9 +162,10 @@ class ToolTipWidget extends StatelessWidget {
                                         color: textColor)),
                               )
                                   : Container(),
-                              Center(
+                              Container(
                                 child: Text(
                                   description,
+                                  textAlign: TextAlign.center,
                                   style: descTextStyle ??
                                       Theme.of(context)
                                           .textTheme

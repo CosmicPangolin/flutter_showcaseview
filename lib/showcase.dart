@@ -333,7 +333,7 @@ class _TargetWidget extends StatelessWidget {
               shape: shapeBorder ??
                   RoundedRectangleBorder(
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(8),
+                      Radius.circular(16),
                     ),
                   ),
             ),
