@@ -135,8 +135,9 @@ class ToolTipWidget extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: Container(
+                    width: MediaQuery.of(context).size.width * 4/5,
                     padding:
-                    EdgeInsets.only(top: paddingTop, bottom: paddingBottom),
+                    EdgeInsets.only(top: paddingTop, bottom: paddingBottom, left: 4.0, right: 4.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: GestureDetector(
