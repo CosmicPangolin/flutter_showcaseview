@@ -79,16 +79,6 @@ class ToolTipWidget extends StatelessWidget {
     }
   }
 
-  double _getTooltipWidth() {
-    double titleLength = title == null ? 0 : (title.length * 10.0);
-    double descriptionLength = (description.length * 7.0);
-    if (titleLength > descriptionLength) {
-      return titleLength + 10;
-    } else {
-      return descriptionLength + 10;
-    }
-  }
-
   bool _isLeft() {
     double screenWidth = screenSize.width / 3;
     return !(screenWidth <= position.getCenter());
@@ -97,37 +87,6 @@ class ToolTipWidget extends StatelessWidget {
   bool _isRight() {
     double screenWidth = screenSize.width / 3;
     return ((screenWidth * 2) <= position.getCenter());
-  }
-
-  double _getLeft() {
-    if (_isLeft()) {
-      double leftPadding = position.getCenter() - (_getTooltipWidth() * 0.1);
-      if (leftPadding + _getTooltipWidth() > screenSize.width) {
-        leftPadding = (screenSize.width - 20) - _getTooltipWidth();
-      }
-      if (leftPadding < 20) {
-        leftPadding = 14;
-      }
-      return leftPadding;
-    } else if (!(_isRight())) {
-      return position.getCenter() - (_getTooltipWidth() * 0.5);
-    } else {
-      return null;
-    }
-  }
-
-  double _getRight() {
-    if (_isRight()) {
-      double rightPadding = position.getCenter() + (_getTooltipWidth() / 2);
-      if (rightPadding + _getTooltipWidth() > screenSize.width) {
-        rightPadding = 14;
-      }
-      return rightPadding;
-    } else if (!(_isLeft())) {
-      return position.getCenter() - (_getTooltipWidth() * 0.5);
-    } else {
-      return null;
-    }
   }
 
   double _getSpace() {
@@ -166,8 +125,6 @@ class ToolTipWidget extends StatelessWidget {
           showArrow ? _getArrow(contentOffsetMultiplier) : Container(),
           Positioned(
             top: contentY,
-            left: _getLeft(),
-            right: _getRight(),
             child: FractionalTranslation(
               translation: Offset(0.0, contentFractionalOffset),
               child: SlideTransition(
@@ -185,40 +142,32 @@ class ToolTipWidget extends StatelessWidget {
                       child: GestureDetector(
                         onTap: onTooltipTap,
                         child: Container(
-                          width: _getTooltipWidth(),
                           padding: EdgeInsets.symmetric(vertical: 8),
                           color: tooltipColor,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: title != null
+                                ? CrossAxisAlignment.start
+                                : CrossAxisAlignment.center,
                             children: <Widget>[
-                              Container(
-                                child: Column(
-                                  crossAxisAlignment: title != null
-                                      ? CrossAxisAlignment.start
-                                      : CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    title != null
-                                        ? Text(
-                                      title,
-                                      style: titleTextStyle ??
-                                          Theme.of(context)
-                                              .textTheme
-                                              .title
-                                              .merge(TextStyle(
-                                              color: textColor)),
-                                    )
-                                        : Container(),
-                                    Text(
-                                      description,
-                                      style: descTextStyle ??
-                                          Theme.of(context)
-                                              .textTheme
-                                              .subtitle
-                                              .merge(TextStyle(color: textColor)),
-                                    ),
-                                  ],
-                                ),
+                              title != null
+                                  ? Text(
+                                title,
+                                style: titleTextStyle ??
+                                    Theme.of(context)
+                                        .textTheme
+                                        .title
+                                        .merge(TextStyle(
+                                        color: textColor)),
                               )
+                                  : Container(),
+                              Text(
+                                description,
+                                style: descTextStyle ??
+                                    Theme.of(context)
+                                        .textTheme
+                                        .subtitle
+                                        .merge(TextStyle(color: textColor)),
+                              ),
                             ],
                           ),
                         ),
