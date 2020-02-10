@@ -125,6 +125,7 @@ class ToolTipWidget extends StatelessWidget {
           showArrow ? _getArrow(contentOffsetMultiplier) : Container(),
           Positioned(
             top: contentY,
+            left:  MediaQuery.of(context).size.width * 1/16,
             child: FractionalTranslation(
               translation: Offset(0.0, contentFractionalOffset),
               child: SlideTransition(
@@ -142,27 +143,27 @@ class ToolTipWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       child: GestureDetector(
                         onTap: onTooltipTap,
-                        child: Center(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8.0),
-                            color: tooltipColor,
-                            child: Column(
-                              crossAxisAlignment: title != null
-                                  ? CrossAxisAlignment.start
-                                  : CrossAxisAlignment.center,
-                              children: <Widget>[
-                                title != null
-                                    ? Text(
-                                  title,
-                                  style: titleTextStyle ??
-                                      Theme.of(context)
-                                          .textTheme
-                                          .title
-                                          .merge(TextStyle(
-                                          color: textColor)),
-                                )
-                                    : Container(),
-                                Text(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8.0),
+                          color: tooltipColor,
+                          child: Column(
+                            crossAxisAlignment: title != null
+                                ? CrossAxisAlignment.start
+                                : CrossAxisAlignment.center,
+                            children: <Widget>[
+                              title != null
+                                  ? Text(
+                                title,
+                                style: titleTextStyle ??
+                                    Theme.of(context)
+                                        .textTheme
+                                        .title
+                                        .merge(TextStyle(
+                                        color: textColor)),
+                              )
+                                  : Container(),
+                              Center(
+                                child: Text(
                                   description,
                                   style: descTextStyle ??
                                       Theme.of(context)
@@ -170,8 +171,8 @@ class ToolTipWidget extends StatelessWidget {
                                           .subtitle
                                           .merge(TextStyle(color: textColor)),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
