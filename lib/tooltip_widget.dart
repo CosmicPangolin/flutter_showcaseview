@@ -135,41 +135,43 @@ class ToolTipWidget extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 4/5,
+                    width: MediaQuery.of(context).size.width * 7/8,
                     padding:
-                    EdgeInsets.only(top: paddingTop, bottom: paddingBottom, left: 4.0, right: 4.0),
+                    EdgeInsets.only(top: paddingTop, bottom: paddingBottom),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: GestureDetector(
                         onTap: onTooltipTap,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 8),
-                          color: tooltipColor,
-                          child: Column(
-                            crossAxisAlignment: title != null
-                                ? CrossAxisAlignment.start
-                                : CrossAxisAlignment.center,
-                            children: <Widget>[
-                              title != null
-                                  ? Text(
-                                title,
-                                style: titleTextStyle ??
-                                    Theme.of(context)
-                                        .textTheme
-                                        .title
-                                        .merge(TextStyle(
-                                        color: textColor)),
-                              )
-                                  : Container(),
-                              Text(
-                                description,
-                                style: descTextStyle ??
-                                    Theme.of(context)
-                                        .textTheme
-                                        .subtitle
-                                        .merge(TextStyle(color: textColor)),
-                              ),
-                            ],
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8.0),
+                            color: tooltipColor,
+                            child: Column(
+                              crossAxisAlignment: title != null
+                                  ? CrossAxisAlignment.start
+                                  : CrossAxisAlignment.center,
+                              children: <Widget>[
+                                title != null
+                                    ? Text(
+                                  title,
+                                  style: titleTextStyle ??
+                                      Theme.of(context)
+                                          .textTheme
+                                          .title
+                                          .merge(TextStyle(
+                                          color: textColor)),
+                                )
+                                    : Container(),
+                                Text(
+                                  description,
+                                  style: descTextStyle ??
+                                      Theme.of(context)
+                                          .textTheme
+                                          .subtitle
+                                          .merge(TextStyle(color: textColor)),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
