@@ -125,7 +125,7 @@ class ToolTipWidget extends StatelessWidget {
           showArrow ? _getArrow(contentOffsetMultiplier) : Container(),
           Positioned(
             top: contentY,
-            left:  MediaQuery.of(context).size.width * 1/32,
+            left: MediaQuery.of(context).size.width * 1 / 32,
             child: FractionalTranslation(
               translation: Offset(0.0, contentFractionalOffset),
               child: SlideTransition(
@@ -136,15 +136,16 @@ class ToolTipWidget extends StatelessWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: Container(
-                    width: MediaQuery.of(context).size.width * 15/16,
+                    width: MediaQuery.of(context).size.width * 15 / 16,
                     padding:
-                    EdgeInsets.only(top: paddingTop, bottom: paddingBottom),
+                        EdgeInsets.only(top: paddingTop, bottom: paddingBottom),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: GestureDetector(
                         onTap: onTooltipTap,
                         child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8.0),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 8.0),
                           color: tooltipColor,
                           child: Column(
                             crossAxisAlignment: title != null
@@ -153,14 +154,14 @@ class ToolTipWidget extends StatelessWidget {
                             children: <Widget>[
                               title != null
                                   ? Text(
-                                title,
-                                style: titleTextStyle ??
-                                    Theme.of(context)
-                                        .textTheme
-                                        .title
-                                        .merge(TextStyle(
-                                        color: textColor)),
-                              )
+                                      title,
+                                      style: titleTextStyle ??
+                                          Theme.of(context)
+                                              .textTheme
+                                              .title
+                                              .merge(
+                                                  TextStyle(color: textColor)),
+                                    )
                                   : Container(),
                               Container(
                                 child: Text(
@@ -171,6 +172,13 @@ class ToolTipWidget extends StatelessWidget {
                                           .textTheme
                                           .subtitle
                                           .merge(TextStyle(color: textColor)),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: FlatButton(
+                                  child: Text('Got it'),
+                                  onPressed: () {},
                                 ),
                               ),
                             ],
@@ -235,15 +243,15 @@ class ToolTipWidget extends StatelessWidget {
           ).animate(animationOffset),
           child: isArrowUp
               ? Icon(
-            Icons.arrow_drop_up,
-            color: tooltipColor,
-            size: 50,
-          )
+                  Icons.arrow_drop_up,
+                  color: tooltipColor,
+                  size: 50,
+                )
               : Icon(
-            Icons.arrow_drop_down,
-            color: tooltipColor,
-            size: 50,
-          ),
+                  Icons.arrow_drop_down,
+                  color: tooltipColor,
+                  size: 50,
+                ),
         ),
       ),
     );
