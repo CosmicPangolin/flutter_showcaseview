@@ -177,8 +177,8 @@ class ToolTipWidget extends StatelessWidget {
                               Align(
                                 alignment: Alignment.bottomRight,
                                 child: FlatButton(
-                                  child: Text('Got it'),
-                                  onPressed: () {},
+                                  child: Text('Got it!'),
+                                  onPressed: onTooltipTap,
                                 ),
                               ),
                             ],
